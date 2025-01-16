@@ -15,6 +15,8 @@ class ChallengesMainScreen extends StatelessWidget {
       returnBottomButtonActivated: true,
       onPressed1: () =>
           context.go("/challenges_main_screen/challenges_with_letters"),
+      onPressed2: () =>
+          context.go("/challenges_main_screen/challenges_with_words"),
     );
   }
 }

@@ -28,22 +28,17 @@ class MainCustomScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return MergeSemantics(
       child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-        ),
+        appBar: AppUtils.customAppBar,
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(AppUtils.generalPadding),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 100),
-                  child: Text(
-                    title,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 60,
-                    ),
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 60,
                   ),
                 ),
                 buttonText1 != null && buttonText1!.isNotEmpty

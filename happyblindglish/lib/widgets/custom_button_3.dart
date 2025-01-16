@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:happyblindglish/utils/app_utils.dart';
 
-class CustomButton1 extends StatelessWidget {
+class CustomButton3 extends StatelessWidget {
   final void Function()? onPressed;
   final String text;
-  const CustomButton1({
+  const CustomButton3({
     super.key,
     required this.onPressed,
     required this.text,
@@ -18,11 +18,10 @@ class CustomButton1 extends StatelessWidget {
           shape: const BeveledRectangleBorder(),
           backgroundColor: Colors.grey,
           fixedSize:
-              const Size(double.maxFinite, AppUtils.customButton1Height)),
+              const Size(double.maxFinite, AppUtils.customButton3Height)),
       child: Text(
         text.toUpperCase(),
         style: const TextStyle(color: Colors.black, fontSize: 24),
-        textAlign: TextAlign.center,
       ),
     );
   }
