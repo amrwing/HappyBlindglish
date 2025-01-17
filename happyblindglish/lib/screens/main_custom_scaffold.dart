@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:happyblindglish/utils/app_utils.dart';
+import 'package:happyblindglish/utils/constants.dart';
 import 'package:happyblindglish/widgets/custom_button_1.dart';
 import 'package:happyblindglish/widgets/custom_button_2.dart';
 
@@ -26,60 +27,64 @@ class MainCustomScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MergeSemantics(
-      child: Scaffold(
-        appBar: AppUtils.customAppBar,
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(AppUtils.generalPadding),
-            child: Column(
-              children: [
-                Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 60,
+    return Scaffold(
+      appBar: AppUtils.customAppBar,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(AppUtils.generalPadding),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              MergeSemantics(
+                child: MergeSemantics(
+                  child: Text(
+                    title.toUpperCase(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: AppUtils.titleFontSize,
+                    ),
                   ),
                 ),
-                buttonText1 != null && buttonText1!.isNotEmpty
-                    ? Padding(
-                        padding:
-                            const EdgeInsets.only(top: AppUtils.buttonPadding),
-                        child: CustomButton1(
-                          onPressed: onPressed1,
-                          text: buttonText1!,
-                        ),
-                      )
-                    : const SizedBox.shrink(),
-                buttonText2 != null && buttonText2!.isNotEmpty
-                    ? Padding(
-                        padding:
-                            const EdgeInsets.only(top: AppUtils.buttonPadding),
-                        child: CustomButton1(
-                          onPressed: onPressed2,
-                          text: buttonText2!,
-                        ),
-                      )
-                    : const SizedBox.shrink(),
-                buttonText3 != null && buttonText3!.isNotEmpty
-                    ? Padding(
-                        padding:
-                            const EdgeInsets.only(top: AppUtils.buttonPadding),
-                        child: CustomButton1(
-                          onPressed: onPressed3,
-                          text: buttonText3!,
-                        ),
-                      )
-                    : const SizedBox.shrink(),
-                returnBottomButtonActivated
-                    ? Padding(
-                        padding: const EdgeInsets.all(AppUtils.buttonPadding),
-                        child: CustomButton2(
-                            onPressed: () => context.pop(), text: "REGRESAR"),
-                      )
-                    : const SizedBox.shrink()
-              ],
-            ),
+              ),
+              buttonText1 != null && buttonText1!.isNotEmpty
+                  ? Padding(
+                      padding:
+                          const EdgeInsets.only(top: AppUtils.buttonPadding),
+                      child: CustomButton1(
+                        onPressed: onPressed1,
+                        text: buttonText1!,
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+              buttonText2 != null && buttonText2!.isNotEmpty
+                  ? Padding(
+                      padding:
+                          const EdgeInsets.only(top: AppUtils.buttonPadding),
+                      child: CustomButton1(
+                        onPressed: onPressed2,
+                        text: buttonText2!,
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+              buttonText3 != null && buttonText3!.isNotEmpty
+                  ? Padding(
+                      padding:
+                          const EdgeInsets.only(top: AppUtils.buttonPadding),
+                      child: CustomButton1(
+                        onPressed: onPressed3,
+                        text: buttonText3!,
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+              returnBottomButtonActivated
+                  ? Padding(
+                      padding: const EdgeInsets.all(AppUtils.buttonPadding),
+                      child: CustomButton2(
+                          onPressed: () => context.pop(),
+                          text: Strings.screenBack.toUpperCase()),
+                    )
+                  : const SizedBox.shrink()
+            ],
           ),
         ),
       ),

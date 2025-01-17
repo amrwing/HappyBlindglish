@@ -3,6 +3,7 @@ import 'package:happyblindglish/screens/challenges/challenges_main_screen.dart';
 import 'package:happyblindglish/screens/challenges/letter_challenges/challenges_with_letters.dart';
 import 'package:happyblindglish/screens/challenges/letter_challenges/letter_challenge_1.dart';
 import 'package:happyblindglish/screens/challenges/word_challenges/challenges_with_words.dart';
+import 'package:happyblindglish/screens/my_progress/progress_screen.dart';
 import 'package:happyblindglish/screens/screens.dart';
 
 abstract class AppRouter {
@@ -33,6 +34,10 @@ abstract class AppRouter {
                     //GoRoute(path: "word_challenge_2"), //TODO
                   ])
             ]),
+        GoRoute(
+          path: "my_progress_screen",
+          builder: (context, state) => const ProgressScreen(),
+        )
       ],
     ),
   ]);

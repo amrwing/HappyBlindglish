@@ -12,15 +12,17 @@ class CustomButton2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-          shape: const BeveledRectangleBorder(),
-          backgroundColor: Colors.grey,
-          fixedSize: const Size(double.nan, AppUtils.customButton1Height)),
-      child: Text(
-        text.toUpperCase(),
-        style: const TextStyle(color: Colors.black, fontSize: 24),
+    return MergeSemantics(
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+            shape: const BeveledRectangleBorder(
+                side: BorderSide(color: Colors.black)),
+            fixedSize: Size(double.nan, AppUtils.buttonMenuHeight)),
+        child: Text(
+          text.toUpperCase(),
+          style: const TextStyle(color: Colors.black, fontSize: 24),
+        ),
       ),
     );
   }

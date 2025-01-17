@@ -9,7 +9,7 @@ class ChallengesWithLetters extends StatelessWidget {
   Widget build(BuildContext context) {
     return MainCustomScaffold(
       title: "RETOS CON LETRAS",
-      buttonText1: "RETO IDENTIFICAR",
+      buttonText1: "RETO: IDENTIFICAR",
       buttonText2: "RETO: PRONUNCIAR",
       returnBottomButtonActivated: true,
       onPressed1: () => context.go(
