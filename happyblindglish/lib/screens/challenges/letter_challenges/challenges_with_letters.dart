@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:happyblindglish/screens/main_custom_scaffold.dart';
+import 'package:happyblindglish/screens/generic_scaffolds/main_custom_scaffold.dart';
 
 class ChallengesWithLetters extends StatelessWidget {
   const ChallengesWithLetters({super.key});
@@ -12,10 +11,10 @@ class ChallengesWithLetters extends StatelessWidget {
       buttonText1: "RETO: IDENTIFICAR",
       buttonText2: "RETO: PRONUNCIAR",
       returnBottomButtonActivated: true,
-      onPressed1: () => context.go(
-          "/challenges_main_screen/challenges_with_letters/letter_challenge_1"),
-      onPressed2: () => context.go(
-          "/challenges_main_screen/challenges_with_letters/letter_challenge_1"), //TODO: CHANGE
+      onPressed1: () =>
+          Navigator.pushNamed(context, "pantalla_reto_con_letras_1"),
+      onPressed2: () =>
+          Navigator.pushNamed(context, "pantalla_reto_con_letras_2"),
     );
   }
 }

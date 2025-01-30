@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:happyblindglish/screens/main_custom_scaffold.dart';
+import 'package:happyblindglish/screens/generic_scaffolds/main_custom_scaffold.dart';
 
 class ProgressScreen extends StatelessWidget {
   const ProgressScreen({super.key});

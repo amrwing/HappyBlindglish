@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
-import 'package:happyblindglish/screens/main_custom_scaffold.dart';
+import 'package:happyblindglish/screens/generic_scaffolds/main_custom_scaffold.dart';
 
 class ChallengesMainScreen extends StatelessWidget {
   const ChallengesMainScreen({super.key});
@@ -14,9 +13,9 @@ class ChallengesMainScreen extends StatelessWidget {
       buttonText3: 'RETOS CON FRASES',
       returnBottomButtonActivated: true,
       onPressed1: () =>
-          context.go("/challenges_main_screen/challenges_with_letters"),
+          Navigator.pushNamed(context, "pantalla_retos_con_letras"),
       onPressed2: () =>
-          context.go("/challenges_main_screen/challenges_with_words"),
+          Navigator.pushNamed(context, "pantalla_retos_con_palabras"),
     );
   }
 }

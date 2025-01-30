@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:happyblindglish/screens/instructions_custom_scaffold.dart';
+import 'package:happyblindglish/screens/generic_scaffolds/instructions_custom_scaffold.dart';
 
 class LetterChallenge2 extends StatelessWidget {
   const LetterChallenge2({super.key});

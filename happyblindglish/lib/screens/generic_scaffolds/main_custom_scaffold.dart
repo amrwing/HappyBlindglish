@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:happyblindglish/utils/app_utils.dart';
 import 'package:happyblindglish/utils/constants.dart';
 import 'package:happyblindglish/widgets/custom_button_1.dart';
@@ -80,7 +79,7 @@ class MainCustomScaffold extends StatelessWidget {
                   ? Padding(
                       padding: const EdgeInsets.all(AppUtils.buttonPadding),
                       child: CustomButton2(
-                          onPressed: () => context.pop(),
+                          onPressed: () => Navigator.pop(context),
                           text: Strings.screenBack.toUpperCase()),
                     )
                   : const SizedBox.shrink()
