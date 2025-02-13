@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:happyblindglish/screens/generic_scaffolds/main_custom_scaffold.dart';
+import 'package:happyblindglish/presentation/screens/generic_scaffolds/main_custom_scaffold.dart';
 
 class ProgressScreen extends StatelessWidget {
-  const ProgressScreen({super.key});
+  final String text;
+  const ProgressScreen({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
-    return const MainCustomScaffold(
+    return MainCustomScaffold(
+      tutorialText: text,
       title: "MI PROGRESO",
       buttonText1: "PALABRAS APRENDIDAS",
       buttonText2: "PUNTOS ACTUALES",

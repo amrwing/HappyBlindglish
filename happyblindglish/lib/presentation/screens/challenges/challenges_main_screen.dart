@@ -1,8 +1,9 @@
 import 'package:flutter/widgets.dart';
-import 'package:happyblindglish/screens/generic_scaffolds/main_custom_scaffold.dart';
+import 'package:happyblindglish/presentation/screens/generic_scaffolds/main_custom_scaffold.dart';
 
 class ChallengesMainScreen extends StatelessWidget {
-  const ChallengesMainScreen({super.key});
+  final String text;
+  const ChallengesMainScreen({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,7 @@ class ChallengesMainScreen extends StatelessWidget {
           Navigator.pushNamed(context, "pantalla_retos_con_letras"),
       onPressed2: () =>
           Navigator.pushNamed(context, "pantalla_retos_con_palabras"),
+      tutorialText: text,
     );
   }
 }
