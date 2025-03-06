@@ -13,9 +13,4 @@ class AppUtils {
   static const double textButtonPadding = 8;
   static const double customReturnButtonWidth = 150;
   static const Color generalBackground = Color(0xffdedede);
-  //GLOBAL APPBAR
-  static PreferredSizeWidget? customAppBar = AppBar(
-    backgroundColor: generalBackground,
-    automaticallyImplyLeading: false,
-  );
 }

@@ -2,15 +2,14 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:happyblindglish/presentation/blocs/reto_cubit.dart';
 import 'package:happyblindglish/presentation/blocs/tutorial_preference.dart';
-import 'package:happyblindglish/presentation/screens/challenges/challenges_main_screen.dart';
-import 'package:happyblindglish/presentation/screens/challenges/letter_challenges/challenges_with_letters.dart';
-import 'package:happyblindglish/presentation/screens/challenges/letter_challenges/letter_challenge_1.dart';
-import 'package:happyblindglish/presentation/screens/challenges/letter_challenges/letter_challenge_2.dart';
-import 'package:happyblindglish/presentation/screens/challenges/word_challenges/challenges_with_words.dart';
-import 'package:happyblindglish/presentation/screens/generic_scaffolds/main_tutorial_scaffold.dart';
+import 'package:happyblindglish/presentation/screens/challenges_main_screen.dart';
+import 'package:happyblindglish/presentation/screens/onboarding_screen.dart';
 import 'package:happyblindglish/presentation/screens/main_screen.dart';
-import 'package:happyblindglish/presentation/screens/my_progress/progress_screen.dart';
+import 'package:happyblindglish/presentation/screens/progress_screen.dart';
+import 'package:happyblindglish/presentation/screens/reto_actividad_screen.dart';
+import 'package:happyblindglish/presentation/screens/retos_del_dia_screen.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:round_spot/round_spot.dart' as rs;
 
@@ -20,7 +19,15 @@ class BlocsProviders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => TutorialPreferenceCubit())],
+      providers: [
+        BlocProvider(
+          create: (context) => TutorialPreferenceCubit(),
+        ),
+        BlocProvider(
+          create: (context) => RetoCubit(),
+          lazy: true,
+        ),
+      ],
       child: const MyApp(),
     );
   }
@@ -73,9 +80,9 @@ class MyApp extends StatelessWidget {
       navigatorObservers: [rs.Observer()],
       initialRoute: "pantalla_inicial_tutorial",
       routes: {
-        "pantalla_inicial_tutorial": (context) => const MainTutorialScreen(
-              text:
-                  "Bienvenido a HappyBlindglish, puedes empezar seleccionando el modo de la aplicación que prefieras",
+        "reto_actividad_screen": (context) => const RetoActividadScreen(),
+        "pantalla_inicial_tutorial": (context) => const OnboardingScreen(
+        
             ),
         "pantalla_principal": (context) => const MainScreen(
               text:
@@ -88,22 +95,7 @@ class MyApp extends StatelessWidget {
               text:
                   "En esta pantalla encontrarás 4 opciones: Un botón que te lleva a los retos para aprender las letras en ingles, un botón para hacerlo con palabras, un botón para hacerlo con frases y finalmente un botón de regreso",
             ),
-        "pantalla_retos_con_letras": (context) => const ChallengesWithLetters(
-              text:
-                  "En esta pantalla encontrarás varios botones con distintos retos para aprender las letras en inglés y hasta abajo el botón de regresar",
-            ),
-        "pantalla_retos_con_palabras": (context) => const ChallengesWithWords(
-              text:
-                  "En esta pantalla encontrarás varios botones con distintos retos para aprender palabras en inglés y hasta abajo el botón de regresar",
-            ),
-        "pantalla_reto_con_letras_1": (context) => const LetterChallenge1(
-              text:
-                  "En esta pantalla encontrarás 3 botones: uno que te dice como se realizará la actividad, uno para comenzar a realizar la actividad y finalmente el botón de regresar",
-            ),
-        "pantalla_reto_con_letras_2": (context) => const LetterChallenge2(
-              text:
-                  "En esta pantalla encontrarás 3 botones: uno que te dice como se realizará la actividad, uno para comenzar a realizar la actividad y finalmente el botón de regresar",
-            ),
+        "retos_del_dia": (context) => const RetosDelDiaScreen()
       },
     );
   }
