@@ -1,14 +1,16 @@
 class Reto {
-  String nombre;
+  String? nombre;
   String tipo;
-  String descripcion;
+  String? tema;
+  String? descripcion;
   bool estatusCompletado;
   DatosReto datosReto;
 
   Reto({
-    required this.nombre,
+    this.tema,
+    this.nombre,
     required this.tipo,
-    required this.descripcion,
+    this.descripcion,
     required this.estatusCompletado,
     required this.datosReto,
   });

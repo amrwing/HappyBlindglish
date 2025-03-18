@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:happyblindglish/presentation/blocs/tutorial_preference.dart';
 import 'package:happyblindglish/utils/app_utils.dart';
@@ -51,13 +50,14 @@ class _MainCustomScaffoldState extends State<MainCustomScaffold> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: MediaQuery.of(context).size.height * 0.3,
-        title: Text(
-          widget.title,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: AppUtils.titleFontSize,
+        title: Center(
+          child: Text(
+            widget.title.toUpperCase(),
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: AppUtils.titleFontSize,
+            ),
           ),
         ),
         backgroundColor: AppUtils.generalBackground,
@@ -67,7 +67,8 @@ class _MainCustomScaffoldState extends State<MainCustomScaffold> {
       body: BlocBuilder<TutorialPreferenceCubit, bool>(
         builder: (context, state) => Center(
           child: Padding(
-            padding: const EdgeInsets.all(AppUtils.generalPadding),
+            padding: const EdgeInsets.only(
+                right: AppUtils.generalPadding, left: AppUtils.generalPadding),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -88,7 +89,9 @@ class _MainCustomScaffoldState extends State<MainCustomScaffold> {
                 _buildButton(widget.buttonText3, widget.onPressed3),
                 if (widget.returnBottomButtonActivated)
                   Padding(
-                    padding: const EdgeInsets.all(AppUtils.buttonPadding),
+                    padding: const EdgeInsets.only(
+                        right: AppUtils.buttonPadding,
+                        left: AppUtils.buttonPadding),
                     child: CustomButton2(
                       onPressed: () => {
                         //TODO: reproducir sonido o indicar que se regresó

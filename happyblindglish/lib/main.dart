@@ -76,14 +76,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
+
       debugShowCheckedModeBanner: false,
       navigatorObservers: [rs.Observer()],
       initialRoute: "pantalla_inicial_tutorial",
       routes: {
         "reto_actividad_screen": (context) => const RetoActividadScreen(),
-        "pantalla_inicial_tutorial": (context) => const OnboardingScreen(
-        
-            ),
+        "pantalla_inicial_tutorial": (context) => const OnboardingScreen(),
         "pantalla_principal": (context) => const MainScreen(
               text:
                   "Bienvenido a HappyBlindglish, ahora mismo te encuentras en la pantalla principal. Aquí encontrarás 3 opciones: un botón para ir a las actividades y retos, otro botón para ver tu progreso y puntuación y un botón para regresar al menú de preferencias.",

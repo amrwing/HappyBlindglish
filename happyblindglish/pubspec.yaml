@@ -42,10 +42,13 @@ dependencies:
   flutter_bloc: ^9.0.0
   smooth_page_indicator: ^1.2.1
   audioplayers: ^6.2.0
-
+  flutter_accessibility_service: ^0.2.5
+  vibration: ^1.7.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
