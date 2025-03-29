@@ -11,4 +11,29 @@ class Leccion {
     this.descripcion,
     this.dificultad,
   });
+
+  // Convertir Leccion a un Map
+  Map<String, dynamic> toMap() {
+    return {
+      'nombre': nombre,
+      'tema': tema,
+      'descripcion': descripcion,
+      'dificultad': dificultad,
+    };
+  }
+
+  // Crear Leccion desde un Map
+  factory Leccion.fromMap(Map<String, dynamic> map) {
+    return Leccion(
+      nombre: map['nombre'],
+      tema: map['tema'],
+      descripcion: map['descripcion'],
+      dificultad: map['dificultad'],
+    );
+  }
+
+  @override
+  String toString() {
+    return 'Leccion(nombre: $nombre, tema: $tema, descripcion: $descripcion, dificultad: $dificultad)';
+  }
 }

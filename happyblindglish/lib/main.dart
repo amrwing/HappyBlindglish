@@ -2,14 +2,18 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:happyblindglish/presentation/blocs/leccion_cubit.dart';
 import 'package:happyblindglish/presentation/blocs/reto_cubit.dart';
 import 'package:happyblindglish/presentation/blocs/tutorial_preference.dart';
 import 'package:happyblindglish/presentation/screens/challenges_main_screen.dart';
+import 'package:happyblindglish/presentation/screens/leccion_actividad_screen.dart';
+import 'package:happyblindglish/presentation/screens/lecciones_screen.dart';
 import 'package:happyblindglish/presentation/screens/onboarding_screen.dart';
 import 'package:happyblindglish/presentation/screens/main_screen.dart';
 import 'package:happyblindglish/presentation/screens/progress_screen.dart';
 import 'package:happyblindglish/presentation/screens/reto_actividad_screen.dart';
 import 'package:happyblindglish/presentation/screens/retos_del_dia_screen.dart';
+import 'package:happyblindglish/providers/db_provider.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:round_spot/round_spot.dart' as rs;
 
@@ -27,6 +31,10 @@ class BlocsProviders extends StatelessWidget {
           create: (context) => RetoCubit(),
           lazy: true,
         ),
+        BlocProvider(
+          create: (context) => LeccionCubit(),
+          lazy: true,
+        ),
       ],
       child: const MyApp(),
     );
@@ -34,7 +42,7 @@ class BlocsProviders extends StatelessWidget {
 }
 
 String? sessionFolderPath;
-void main() {
+void main() async {
   runApp(rs.initialize(
     config: rs.Config(heatMapStyle: rs.HeatMapStyle.smooth),
     loggingLevel: rs.LogLevel.warning,
@@ -71,13 +79,25 @@ Future<void> saveImageInSingleSession(
   File('${sessionFolderPath!}/$fileName').writeAsBytesSync(data);
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final db = DatabaseProvider();
+  @override
+  void initState() {
+    super.initState();
+    //LLENAMOS LA BASE DE DATOS
+    db.insertarBancoDePalabras();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
-
       debugShowCheckedModeBanner: false,
       navigatorObservers: [rs.Observer()],
       initialRoute: "pantalla_inicial_tutorial",
@@ -95,7 +115,9 @@ class MyApp extends StatelessWidget {
               text:
                   "En esta pantalla encontrarás 4 opciones: Un botón que te lleva a los retos para aprender las letras en ingles, un botón para hacerlo con palabras, un botón para hacerlo con frases y finalmente un botón de regreso",
             ),
-        "retos_del_dia": (context) => const RetosDelDiaScreen()
+        "retos_del_dia": (context) => const RetosDelDiaScreen(),
+        "lecciones_y_vocabulario": (context) => const LeccionesScreen(),
+        "leccion_actividad_screen": (context) => const LeccionActividadScreen()
       },
     );
   }

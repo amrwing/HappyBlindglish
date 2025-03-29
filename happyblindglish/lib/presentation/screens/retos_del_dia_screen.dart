@@ -14,8 +14,8 @@ class RetosDelDiaScreen extends StatefulWidget {
 
 class _RetosDelDiaScreenState extends State<RetosDelDiaScreen> {
   List<Reto> retosDelDia = [];
-  late int? numInicialDeRetos;
-  late int numeroRetosCompletados = 0;
+  int numInicialDeRetos = 0;
+  int numeroRetosCompletados = 0;
   @override
   void initState() {
     super.initState();
@@ -33,25 +33,33 @@ class _RetosDelDiaScreenState extends State<RetosDelDiaScreen> {
           tema: "animales",
           estatusCompletado: false,
           datosReto: DatosReto(
-              puntosReto: 20, palabrasPorAprender: 5, palabrasAprendidas: 0),
+            puntosReto: 20,
+            palabrasPorAprender: 5,
+          ),
           tipo: TipoDeReto.acertarLasPalabras.name),
       Reto(
           tema: "colores",
           estatusCompletado: false,
           datosReto: DatosReto(
-              puntosReto: 40, palabrasPorAprender: 5, palabrasAprendidas: 0),
+            puntosReto: 40,
+            palabrasPorAprender: 5,
+          ),
           tipo: TipoDeReto.acertarLasPalabras.name),
       Reto(
           tema: "verbos",
           estatusCompletado: false,
           datosReto: DatosReto(
-              puntosReto: 40, palabrasPorAprender: 5, palabrasAprendidas: 0),
+            puntosReto: 40,
+            palabrasPorAprender: 5,
+          ),
           tipo: TipoDeReto.acertarLasPalabras.name),
       Reto(
-          tema: "oraciones con verbos",
+          tema: "saludos",
           estatusCompletado: false,
           datosReto: DatosReto(
-              puntosReto: 100, palabrasPorAprender: 3, palabrasAprendidas: 0),
+            puntosReto: 100,
+            palabrasPorAprender: 3,
+          ),
           tipo: TipoDeReto.acertarLasPalabras.name),
     ];
   }
@@ -64,7 +72,7 @@ class _RetosDelDiaScreenState extends State<RetosDelDiaScreen> {
             ? Column(
                 children: [
                   Text(
-                      "$numeroRetosCompletados de ${numInicialDeRetos ?? ""} retos completados"),
+                      "$numeroRetosCompletados de $numInicialDeRetos retos completados"),
                   Container(
                     color: AppUtils.generalBackground,
                     height: MediaQuery.of(context).size.height / 1.5,
@@ -127,8 +135,6 @@ class ChallengeCard extends StatelessWidget {
             child: ListTile(
               title: Text(
                   "Acierta ${reto.datosReto.palabrasPorAprender} ${reto.tema} en inglés"),
-              subtitle: Text(
-                  "${reto.datosReto.palabrasAprendidas} de ${reto.datosReto.palabrasPorAprender} completados"),
             ),
           ),
         ),

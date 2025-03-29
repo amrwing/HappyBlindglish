@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:happyblindglish/utils/app_utils.dart';
 
 class TranslatedButton extends StatefulWidget {
   final void Function()? onPressed;
@@ -32,6 +31,15 @@ class _TranslatedButtonState extends State<TranslatedButton> {
     await _stopSpeech();
     await _flutterTts.setLanguage("en-US");
     await _flutterTts.setSpeechRate(0.2); // Velocidad lenta
+    await _flutterTts.speak(
+      widget.text,
+    );
+  }
+
+  Future<void> _speakNormal() async {
+    await _stopSpeech();
+    await _flutterTts.setLanguage("en-US");
+    await _flutterTts.setSpeechRate(0.7); // Velocidad lenta
     await _flutterTts.speak(
       widget.text,
     );
@@ -69,54 +77,59 @@ class _TranslatedButtonState extends State<TranslatedButton> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: widget.onPressed,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(AppUtils.textButtonPadding),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
-              child: Semantics(
-                child: Text(
-                  widget.text,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+    return Semantics(
+      label:
+          "${widget.text}. pulsar una vez para pronunciar lentamente, mantener presionado para seleccionar",
+      child: GestureDetector(
+        excludeFromSemantics: true,
+        onLongPress: () async {
+          if (!block) {
+            if (anotherEvent) {
+              anotherEvent = false;
+            }
+            _spellOut();
+          }
+        },
+        onTap: () {
+          widget.onPressed!();
+          _speakNormal();
+        },
+        child: Container(
+          color: Colors.indigo,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(24),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width / 2,
+                  child: Semantics(
+                    excludeSemantics: true,
+                    child: Text(
+                      widget.text,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
-            ),
+              IconButton(
+                color: Colors.white,
+                onPressed: () {
+                  _speakSlowly();
+                },
+                icon: Semantics(
+                  label: "Pronunciar lentamente",
+                  child: const Icon(Icons.volume_down),
+                ),
+              ),
+            ],
           ),
-          IconButton(
-            onPressed: () {
-              if (block) {
-                anotherEvent = true;
-              }
-              _speakSlowly();
-            },
-            icon: Semantics(
-              label: "Pronunciar lentamente",
-              child: const Icon(Icons.volume_down),
-            ),
-          ),
-          IconButton(
-            onPressed: () {
-              if (!block) {
-                if (anotherEvent) {
-                  anotherEvent = false;
-                }
-                _spellOut();
-              }
-            },
-            icon: Semantics(
-              label: "Deletrear",
-              child: const Icon(Icons.spellcheck),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

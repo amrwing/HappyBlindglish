@@ -134,7 +134,9 @@ class _RetoActividadScreenState extends State<RetoActividadScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: Text("Puntaje: $puntosGanados acumulados"),
+        backgroundColor: Colors.amber,
         automaticallyImplyLeading: false,
       ),
       body: BlocBuilder<RetoCubit, Reto?>(
@@ -142,7 +144,7 @@ class _RetoActividadScreenState extends State<RetoActividadScreen> {
           if (firstTime) {
             firstTime = false;
             SemanticsService.announce(
-                "Acierta ${selectedReto.datosReto.palabrasPorAprender} ${selectedReto.tema} en inglés",
+                "Entraste a, acierta ${selectedReto.datosReto.palabrasPorAprender} ${selectedReto.tema} en inglés",
                 TextDirection.ltr);
           }
           return Semantics(
@@ -197,14 +199,14 @@ class _RetoActividadScreenState extends State<RetoActividadScreen> {
                                     state.datosReto.palabrasPorAprender;
                                 _playSound(AssetSource('sonidos/assert.mp3'));
                                 await Future.delayed(
-                                    const Duration(seconds: 1));
+                                    const Duration(seconds: 2));
 
                                 _siguientePregunta();
                               } else {
                                 _playSound(AssetSource('sonidos/wrong.mp3'));
 
                                 await Future.delayed(
-                                    const Duration(seconds: 1));
+                                    const Duration(seconds: 2));
 
                                 _siguientePregunta();
                               }

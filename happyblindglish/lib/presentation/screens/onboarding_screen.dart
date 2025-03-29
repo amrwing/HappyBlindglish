@@ -13,6 +13,7 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
+  bool blockUI = false;
 
   // Crear claves globales para cada página del onboarding
   final List<GlobalKey<OnboardingPageState>> _pageKeys = [
@@ -23,15 +24,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   ];
 
   void _nextPage() {
+    setState(() {
+      blockUI = true;
+    });
     if (_currentPage < 2) {
       _pageController.nextPage(
           duration: const Duration(milliseconds: 500), curve: Curves.ease);
     } else {
       Navigator.pushReplacementNamed(context, "pantalla_principal");
     }
+    Future.delayed(const Duration(milliseconds: 100)).then((_) {
+      setState(() {
+        blockUI = false;
+      });
+    });
   }
 
   void _backPage() {
+    setState(() {
+      blockUI = true;
+    });
     if (_currentPage > 0) {
       _pageController.previousPage(
           duration: const Duration(milliseconds: 500), curve: Curves.ease);
@@ -39,6 +51,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
     // Llamar a la acción dentro de la página actual
     _pageKeys[_currentPage].currentState?.executeAction();
+    Future.delayed(const Duration(milliseconds: 100)).then((_) {
+      setState(() {
+        blockUI = false;
+      });
+    });
   }
 
   @override
@@ -92,11 +109,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 const SizedBox(height: 20),
                 Visibility(
                   visible: _currentPage > 0,
-                  child: CustomButton1(onPressed: _backPage, text: "Anterior"),
+                  child: Semantics(
+                      excludeSemantics: blockUI,
+                      child: CustomButton1(
+                          onPressed: _backPage, text: "Anterior")),
                 ),
-                CustomButton1(
-                    onPressed: _nextPage,
-                    text: _currentPage == 2 ? "Comenzar" : "Siguiente"),
+                Semantics(
+                  excludeSemantics: blockUI,
+                  child: CustomButton1(
+                      onPressed: _nextPage,
+                      text: _currentPage == 2 ? "Comenzar" : "Siguiente"),
+                ),
               ],
             ),
           ),

@@ -1,10 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:happyblindglish/models/reto.dart';
+import 'package:happyblindglish/models/leccion.dart';
 
-class LeccionCubit extends Cubit<Reto?> {
+class LeccionCubit extends Cubit<Leccion?> {
   LeccionCubit() : super(null);
-  void setChallengeSelection(Reto reto) {
-    emit(reto);
+  void setLessonSelection(Leccion leccion) {
+    emit(leccion);
   }
-  
 }

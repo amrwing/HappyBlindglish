@@ -50,8 +50,33 @@ class _MainCustomScaffoldState extends State<MainCustomScaffold> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          Semantics(
+              excludeSemantics: true,
+              label: "Boton de ayuda",
+              button: false,
+              child: IconButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text("Dialogo de ayuda"),
+                            content: Text(widget.tutorialText),
+                            actions: [
+                              GestureDetector(
+                                child: const Text("Cerrar cuadro de ayuda"),
+                                onTap: () => Navigator.of(context).pop(),
+                              )
+                            ],
+                          );
+                        });
+                  },
+                  icon: const Icon(Icons.help))),
+        ],
         title: Center(
           child: Text(
+            softWrap: true,
             widget.title.toUpperCase(),
             textAlign: TextAlign.center,
             style: const TextStyle(

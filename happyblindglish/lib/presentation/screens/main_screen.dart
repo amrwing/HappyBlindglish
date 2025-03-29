@@ -16,6 +16,7 @@ class MainScreen extends StatelessWidget {
       title: "PANTALLA PRINCIPAL",
       onPressed1: () => Navigator.pushNamed(context, "retos_del_dia"),
       onPressed2: () => Navigator.pushNamed(context, "pantalla_mi_progreso"),
+      onPressed3: () => Navigator.pushNamed(context, "lecciones_y_vocabulario"),
     );
   }
 }
