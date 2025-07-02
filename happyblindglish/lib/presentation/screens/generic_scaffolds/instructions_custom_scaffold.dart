@@ -25,7 +25,10 @@ class InstructionsCustomScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppUtils.generalBackground,
-      appBar: AppUtils.customAppBar,
+      appBar: AppBar(
+        backgroundColor: AppUtils.generalBackground,
+        automaticallyImplyLeading: false,
+      ),
       body: Listener(
         onPointerMove: (PointerMoveEvent event) {},
         onPointerDown: (PointerDownEvent event) {},

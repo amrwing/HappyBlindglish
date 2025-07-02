@@ -12,10 +12,11 @@ class MainScreen extends StatelessWidget {
       tutorialText: text,
       buttonText1: Strings.navigateToChallenges,
       buttonText2: Strings.watchMyProgress,
+      buttonText3: Strings.learnVocabulary,
       title: "PANTALLA PRINCIPAL",
-      onPressed1: () => Navigator.pushNamed(context, "pantalla_retos"),
+      onPressed1: () => Navigator.pushNamed(context, "retos_del_dia"),
       onPressed2: () => Navigator.pushNamed(context, "pantalla_mi_progreso"),
-      returnBottomButtonActivated: true,
+      onPressed3: () => Navigator.pushNamed(context, "lecciones_y_vocabulario"),
     );
   }
 }
